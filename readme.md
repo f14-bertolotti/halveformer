@@ -32,10 +32,7 @@ This can be beneficial in terms of memory usage of the self-attention layer.
 I have a little bit of experience with this trick and it seems to work well in practice.
 However, these test are run on a small dataset ([emotion](https://huggingface.co/datasets/dair-ai/emotion)) and the results are not conclusive.
 
-![alt text](https://github.com/f14-bertolotti/halveformer/blob/main/figs/accuracy.png?raw=true)
-![alt text](https://github.com/f14-bertolotti/halveformer/blob/main/figs/loss.png?raw=true)
-![alt text](https://github.com/f14-bertolotti/halveformer/blob/main/figs/gpumem.png?raw=true)
-![alt text](https://github.com/f14-bertolotti/halveformer/blob/main/figs/time.png?raw=true)
+![alt text](https://github.com/f14-bertolotti/halveformer/blob/main/figs/fig.png?raw=true)
 
 It can be seen that the HalveTransformer performs on par with the Vanilla Transformer. 
 However, it reduces the memory usage quite a bit. You should also expect better savings with longer sequence lengths.
