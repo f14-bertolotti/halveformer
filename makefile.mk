@@ -3,7 +3,7 @@ LR=0.001
 
 venv/bin/python3:
 	python3 -m venv venv
-	python3 -m pip install -r requirements.txt
+	venv/bin/python3 -m pip install -r requirements.txt
 
 define make-targets
 data/$1/$2/done: venv/bin/python3
@@ -30,30 +30,30 @@ all: full-transformer halve-transformer
 figs/fig.png: full-transformer halve-transformer
 	jet init --shape 2 2 \
     jet line --ax 0 0 --input-path data/Transformer/2/train.jsonl      --input-path data/Transformer/1/train.jsonl      --input-path data/Transformer/0/train.jsonl      \
-		--x epoch --y gpumem --where "epoch,>,4" --color 1 .6 0    --label full-transforler \
+		--x epoch --y gpumem --where "epoch,>,4" --color 1 .6 0    --label full-transformer \
     jet line --ax 0 0 --input-path data/HalveTransformer/2/train.jsonl --input-path data/HalveTransformer/1/train.jsonl --input-path data/HalveTransformer/0/train.jsonl \
 		--x epoch --y gpumem --where "epoch,>,4" --color .5 0.2 .7 --label halve-transformer \
 	jet mod  --ax 0 0 --top-spine False --right-spine False --x-label "" --y-label "GPU Mem. (MB)" \
     jet line --ax 0 1 --input-path data/Transformer/2/train.jsonl      --input-path data/Transformer/1/train.jsonl      --input-path data/Transformer/0/train.jsonl      \
-		--x epoch --y time --where "epoch,>,4" --color 1 .6 0    --label full-transforler \
+		--x epoch --y time --where "epoch,>,4" --color 1 .6 0    --label full-transformer \
     jet line --ax 0 1 --input-path data/HalveTransformer/2/train.jsonl --input-path data/HalveTransformer/1/train.jsonl --input-path data/HalveTransformer/0/train.jsonl \
 		--x epoch --y time --where "epoch,>,4" --color .5 0.2 .7 --label halve-transformer \
 	jet mod  --ax 0 1 --top-spine False --right-spine False --x-label "" --y-label "time (s)" \
 	jet line --ax 1 0 --input-path data/Transformer/2/train.jsonl      --input-path data/Transformer/1/train.jsonl      --input-path data/Transformer/0/train.jsonl      \
-		--x epoch --y accuracy --color 1 .6 0    --label train-full-transforler \
+		--x epoch --y accuracy --color 1 .6 0    --label train-full-transformer \
 	jet line --ax 1 0 --input-path data/HalveTransformer/2/train.jsonl --input-path data/HalveTransformer/1/train.jsonl --input-path data/HalveTransformer/0/train.jsonl \
 		--x epoch --y accuracy --color .5 0.2 .7 --label train-halve-transformer \
 	jet line --ax 1 0 --input-path data/Transformer/2/valid.jsonl      --input-path data/Transformer/1/valid.jsonl      --input-path data/Transformer/0/valid.jsonl      \
-		--x epoch --y accuracy --color 1 .6 0    --label valid-full-transforler  --linestyle "--" \
+		--x epoch --y accuracy --color 1 .6 0    --label valid-full-transformer  --linestyle "--" \
 	jet line --ax 1 0 --input-path data/HalveTransformer/2/valid.jsonl --input-path data/HalveTransformer/1/valid.jsonl --input-path data/HalveTransformer/0/valid.jsonl \
 		--x epoch --y accuracy --color .5 0.2 .7 --label valid-halve-transformer --linestyle "--" \
 	jet mod  --ax 1 0 --top-spine False --right-spine False --x-label epoch --y-label "accuracy" \
 	jet line --ax 1 1 --input-path data/Transformer/2/train.jsonl      --input-path data/Transformer/1/train.jsonl      --input-path data/Transformer/0/train.jsonl      \
-		--x epoch --y loss --color 1 .6 0    --label train-full-transforler \
+		--x epoch --y loss --color 1 .6 0    --label train-full-transformer \
 	jet line --ax 1 1 --input-path data/HalveTransformer/2/train.jsonl --input-path data/HalveTransformer/1/train.jsonl --input-path data/HalveTransformer/0/train.jsonl \
 		--x epoch --y loss --color .5 0.2 .7 --label train-halve-transformer \
 	jet line --ax 1 1 --input-path data/Transformer/2/valid.jsonl      --input-path data/Transformer/1/valid.jsonl      --input-path data/Transformer/0/valid.jsonl      \
-		--x epoch --y loss --color 1 .6 0    --label valid-full-transforler  --linestyle "--" \
+		--x epoch --y loss --color 1 .6 0    --label valid-full-transformer  --linestyle "--" \
 	jet line --ax 1 1 --input-path data/HalveTransformer/2/valid.jsonl --input-path data/HalveTransformer/1/valid.jsonl --input-path data/HalveTransformer/0/valid.jsonl \
 		--x epoch --y loss --color .5 0.2 .7 --label valid-halve-transformer --linestyle "--" \
 	jet mod  --ax 1 1 --top-spine False --right-spine False --x-label epoch --y-label "loss" \
